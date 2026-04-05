@@ -4,6 +4,7 @@ import ProfileBlock from "./ProfileBlock"
 import StatCard from "./StatCard"
 import MonthlyChart from "./MonthlyChart"
 import AlertBanner from "./AlertBanner"
+import AIMapPage from "./AIMapPage"
 
 const Dashboard: React.FC = () => {
     const [isEmergency, setIsEmergency] = useState(false);
@@ -67,23 +68,23 @@ const Dashboard: React.FC = () => {
                                 
                                 {/* Live GPS Navigation */}
                                 <StatCard title="Live GPS Navigation" className="h-[300px]" noPadding={true}>
-                                    <div className="w-full h-full overflow-hidden opacity-90 transition-opacity hover:opacity-100">
-                                        <iframe 
-                                            title="Live GPS Navigation Map"
-                                            width="100%" 
-                                            height="100%" 
-                                            frameBorder="0" 
-                                            scrolling="no" 
-                                            marginHeight={0} 
-                                            marginWidth={0} 
-                                            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.435%2C37.758%2C-122.415%2C37.778&amp;layer=mapnik&amp;marker=37.768%2C-122.425" 
-                                            style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(80%) contrast(120%)' }}
-                                        ></iframe>
+                                    <div className="w-full h-full flex items-center justify-center p-6">
+                                        <div className="text-center">
+                                            <p className="text-slate-300 mb-4">Interactive navigation has moved to the AI Map page for a better in-drive experience.</p>
+                                            <button onClick={() => setActiveTab('ai')} className="px-4 py-2 bg-blue-600 rounded text-white font-bold hover:bg-blue-700">Open AI Map</button>
+                                        </div>
                                     </div>
                                 </StatCard>
                             </div>
                         </div>
                     )}
+
+                        {/* AI MAP PAGE */}
+                        {activeTab === 'ai' && (
+                            <div className="w-full">
+                                <AIMapPage onBack={() => setActiveTab('driving')} triggerEmergency={() => setShowContactModal(true)} />
+                            </div>
+                        )}
 
                     {/* PROFILE TAB */}
                     {activeTab === 'profile' && (

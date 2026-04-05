@@ -10,9 +10,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
     return (
         <div className="flex flex-col gap-6 w-full h-full">
             {/* AI Assistant Block */}
-            <div className="bg-blue-600 rounded-lg p-6 flex flex-col items-center justify-center text-center text-white min-h-[250px] shadow-lg border border-blue-500 transition-transform hover:scale-[1.02]">
-                <div className="w-full bg-white text-blue-600 font-bold py-2 mb-4 rounded cursor-pointer hover:bg-blue-50 transition-colors">
-                    Drive AI
+            <div onClick={() => setActiveTab('ai')} className="bg-blue-600 rounded-lg p-6 flex flex-col items-center justify-center text-center text-white min-h-[250px] shadow-lg border border-blue-500 transition-transform hover:scale-[1.02] cursor-pointer">
+                <div className="w-full bg-white text-blue-600 font-bold py-2 mb-4 rounded hover:bg-blue-50 transition-colors">
+                    Activate AI
                 </div>
                 <p className="text-xs font-semibold mb-4 text-blue-100">Your AI-powered driving assistant</p>
                 <div className="w-32 h-32 bg-slate-200/20 rounded-full flex items-center justify-center border-4 border-blue-400 animate-[pulse_4s_ease-in-out_infinite] shadow-[0_0_15px_rgba(255,255,255,0.3)] cursor-pointer">
