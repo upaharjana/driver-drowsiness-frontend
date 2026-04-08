@@ -30,21 +30,24 @@ const AIMapPage: React.FC<AIMapPageProps> = ({ onBack, triggerEmergency }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch("http://127.0.0.1:5000/status")
+      fetch("http://localhost:2000/api/drowsiness")
         .then(res => res.json())
         .then(data => {
-          setStatus(data.status)
-          setConfidence(data.confidence)
+          const status = data.data.status;
+          const confidence = data.data.confidence;
 
-          if (data.status === "FAINTED") {
-            triggerEmergency()
+          setStatus(status);
+          setConfidence(confidence);
+
+          if (status === "FAINTED") {
+            triggerEmergency();
           }
         })
-        .catch(err => console.log(err))
-    }, 500)
+        .catch(err => console.log(err));
+    }, 500);
 
-    return () => clearInterval(interval)
-  }, [triggerEmergency])
+    return () => clearInterval(interval);
+  }, [triggerEmergency]);
 
   useEffect(() => {
     if (status !== lastSpoken.current) {
